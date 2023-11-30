@@ -9,12 +9,30 @@ if __name__ == '__main__':
     import csv
     from datetime import datetime as dt
     import matplotlib.dates as mdates
+    import urllib.request
+    import ssl
+
+
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+
+    with urllib.request.urlopen('https://109.194.141.27:34002/sensor_data/data.txt',context=ctx) as f:
+        html = f.read().decode('utf-8')
+
+    html_new = html.replace("\r", "")
+
+
+    with open('data.txt', 'w', encoding="utf-8") as datafile1:
+         datafile1.write(html_new)
+
 
     X = []
     Y = []
 
     with open('data.txt', 'r') as datafile:
         plotting = csv.reader(datafile, delimiter=',')
+
 
         for ROWS in plotting:
             X.append(dt.fromisoformat(ROWS[0]))
