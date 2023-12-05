@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
         for ROWS in plotting:
             X.append(dt.fromisoformat(ROWS[0]))
-            Y.append([float(ROWS[1]),float(ROWS[3]),float(ROWS[5]),float(ROWS[7]),float(ROWS[9])])
+            Y.append([float(ROWS[1]),float(ROWS[3]),float(ROWS[5]),float(ROWS[7]),float(ROWS[9]),float(ROWS[11])])
 
     fig, ax = plt.subplots()
     ax.plot(X, Y)
@@ -44,6 +44,6 @@ if __name__ == '__main__':
     plt.title('Line Graph using CSV')
     plt.xlabel('Время')
     plt.ylabel('Температура')
-    plt.legend(['sensor 1', 'sensor 2','sensor 3','sensor 4','sensor 5'])
+    plt.legend(['sensor 1', 'sensor 2','sensor 3','sensor 4','sensor 5','outdoor'])
     ax.grid(True, linestyle='-.')
     plt.show()
