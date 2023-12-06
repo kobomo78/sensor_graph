@@ -38,12 +38,12 @@ if __name__ == '__main__':
         for ROWS in plotting:
             X.append(dt.fromisoformat(ROWS[0]))
             Y_Temperature.append([float(ROWS[1]),float(ROWS[3]),float(ROWS[5]),float(ROWS[7]),float(ROWS[9]),float(ROWS[11])])
-            Y_Humidity.append([float(ROWS[2]), float(ROWS[4]), float(ROWS[6]), float(ROWS[8]), float(ROWS[10])])
+            Y_Humidity.append([float(ROWS[2]), float(ROWS[4]), float(ROWS[6]), float(ROWS[8]), float(ROWS[10]), float(ROWS[12])])
 
     fig, ax = plt.subplots(2,1)
     ax[0].plot(X, Y_Temperature)
     ax[1].plot(X, Y_Humidity)
-    plt.title('Line Graph using CSV')
+    plt.title(' ')
     ax[0].xaxis.set_major_formatter(mdates.DateFormatter('%d/%m/%Y %H:%M'))
     ax[0].set_xlabel('Время')
     ax[0].set_ylabel('Температура')
@@ -52,6 +52,11 @@ if __name__ == '__main__':
     ax[1].xaxis.set_major_formatter(mdates.DateFormatter('%d/%m/%Y %H:%M'))
     ax[1].set_xlabel('Время')
     ax[1].set_ylabel('Влажность')
-    ax[1].legend(['sensor 1', 'sensor 2', 'sensor 3', 'sensor 4', 'sensor 5'])
+    ax[1].legend(['sensor 1', 'sensor 2', 'sensor 3', 'sensor 4', 'sensor 5','outdoor'])
     ax[1].grid(True, linestyle='-.')
     plt.show()
+
+
+
+
+
