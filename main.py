@@ -28,7 +28,8 @@ if __name__ == '__main__':
 
 
     X = []
-    Y = []
+    Y_Temperature = []
+    Y_Humidity= []
 
     with open('data.txt', 'r') as datafile:
         plotting = csv.reader(datafile, delimiter=',')
@@ -36,14 +37,19 @@ if __name__ == '__main__':
 
         for ROWS in plotting:
             X.append(dt.fromisoformat(ROWS[0]))
-            Y.append([float(ROWS[1]),float(ROWS[3]),float(ROWS[5]),float(ROWS[7]),float(ROWS[9]),float(ROWS[11])])
+            Y_Temperature.append([float(ROWS[1]),float(ROWS[3]),float(ROWS[5]),float(ROWS[7]),float(ROWS[9]),float(ROWS[11])])
+            Y_Humidity.append([float(ROWS[2]), float(ROWS[4]), float(ROWS[6]), float(ROWS[8]), float(ROWS[10])])
 
-    fig, ax = plt.subplots()
-    ax.plot(X, Y)
+    fig, ax = plt.subplots(2,1)
+    ax[0].plot(X, Y_Temperature)
+    ax[1].plot(X, Y_Humidity)
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d/%m/%Y %H:%M'))
     plt.title('Line Graph using CSV')
     plt.xlabel('Время')
-    plt.ylabel('Температура')
-    plt.legend(['sensor 1', 'sensor 2','sensor 3','sensor 4','sensor 5','outdoor'])
-    ax.grid(True, linestyle='-.')
+    ax[0].set_ylabel('Температура')
+    ax[0].legend(['sensor 1', 'sensor 2','sensor 3','sensor 4','sensor 5','outdoor'])
+    ax[0].grid(True, linestyle='-.')
+    ax[1].set_ylabel('Влажность')
+    ax[1].legend(['sensor 1', 'sensor 2', 'sensor 3', 'sensor 4', 'sensor 5'])
+    ax[1].grid(True, linestyle='-.')
     plt.show()
