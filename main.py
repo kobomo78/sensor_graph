@@ -41,6 +41,7 @@ if __name__ == '__main__':
 
     X1 = []
     Y_Money = []
+    Y_Money_For_Day = []
 
     with open('data.txt', 'r') as datafile_read:
         plotting = csv.reader(datafile_read, delimiter=',')
@@ -56,6 +57,7 @@ if __name__ == '__main__':
         for ROWS in plotting_power:
             X1.append(dt.fromisoformat(ROWS[0]))
             Y_Money.append([float(ROWS[1])])
+            Y_Money_For_Day.append([float(ROWS[2])])
 
     fig, ax = plt.subplots()
     plt.title(' ')
@@ -82,6 +84,15 @@ if __name__ == '__main__':
     plt.xlabel('Время')
     plt.ylabel('Стоимость')
     ax.grid(True, linestyle='-.')
+
+    fig, ax = plt.subplots()
+    plt.title('Стоимость дневная ')
+    plt.stem(X1, Y_Money_For_Day)
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d/%m/%Y %H:%M'))
+    plt.xlabel('Время')
+    plt.ylabel('Стоимость')
+    ax.grid(True, linestyle='-.')
+
     plt.show()
 
 
